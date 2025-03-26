@@ -26,15 +26,12 @@ private:
 int main() {
     boost::asio::io_context io_context;
 
-    // Клиент 1: Создаёт сессию
     Client client1(io_context, "127.0.0.1", 12345);
     std::cout << "Client 1: " << client1.sendCommand("CREATE\n");
 
-    // Клиент 2: Присоединяется к сессии
     Client client2(io_context, "127.0.0.1", 12345);
     std::cout << "Client 2: " << client2.sendCommand("JOIN 3\n");
 
-    // Клиент 1 делает ход
     std::cout << "Client 1 shot: " << client1.sendCommand("SHOT 3 4\n");
     std::cout << "Client 2 state: " << client2.sendCommand("STATE\n");
 
